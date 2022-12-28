@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 
@@ -14,3 +15,8 @@ class Post(models.Model):
 #This returns how post will be printed out
   def __str__(self):
     return self.title
+
+#to redirect user after they post a blog. Import reverse
+  def get_absolute_url(self):
+      return reverse("post-detail", kwargs={"pk": self.pk})
+  
